@@ -1,0 +1,107 @@
+data;
+
+param time := 10 ;
+
+param Warmup := 2 ;
+
+#param varcost := 0.02 ;
+
+set SPECS := sp1  sp2   ;
+
+set INPUTS := f1  f2  f3   ;
+
+param:   BLENDS:   revenue   initialinv  := 
+         B1        68        36          
+         B2        83        34           ;
+
+param:   POOLS:    fixcost:= 
+         pl1       22        
+         pl2       7         
+         pl3       20        
+         pl4       7         
+         pl5       23        
+         pl6       7         
+         pl7       20         ;
+
+param:    mincapacity     capacity :=    
+f1        0               100            
+f2        0               42             
+f3       0               55             
+B1        0               100            
+B2        0               55             
+pl1       0               72             
+pl2       0               28             
+pl3       0               55             
+pl4       0               28             
+pl5       0               72             
+pl6       0               28             
+pl7       0               80              ;
+
+param:    CONTRACTPOOLS:  duration  :=
+          pl2             5
+          pl5             2 ;
+
+param        demand:
+          1     2     3     4     5     6     7     8     9     10     := 
+#B1        24    12    31    43    37    25    30    21    48    40    
+#B2        13    21    26    35    33    27    22    28    41    34     ;
+B1        24    12    11    13    17    15    17    11    18    23    
+B2        13    21    16    16    13    17    16    18    21    14     ;
+
+param        prodrate:
+          1     2     3     4     5     6     7     8 	  9 	10 :=
+f1        20    17    12    19    16    19    23    20	  11	5
+f2        19    30    8     10    25    22    18    6	  14	9
+f3       31    23    25    17    12    10    14    16	  20	11 ;
+
+param        speclevel:
+          sp1     sp2     := 
+f1        0.61    0.17    
+f2        0.29    0.42    
+f3       0.43    0.33     ;
+
+param:          minspec   maxspec    := 
+[B1,*]  sp1     0.46       0.58       
+       sp2     0.19      0.29      
+[B2,*]  sp1     0.43       0.54      
+       sp2     0.24      0.35       ;
+
+param:   ARCS:          flowlbd        flowupbd   varcost     := 
+#         [f1,pl1]       6              100            
+         [f1,pl3]       9              100            7
+         [f1,pl5]       7              100            4
+#         [f1,pl7]       9              100            
+         [f2,pl1]       9              42             9
+         [f2,pl5]       9              42             6
+#         [f3,pl1]      7              55             
+         [f3,pl3]      7              55             4
+         [f3,pl7]      6              55             3
+         [pl1,pl4]      7              72             2
+         [pl1,pl6]      5              72             10
+#         [pl1,B1]       9              72             
+         [pl2,pl3]      5              55             11
+         [pl2,pl5]      6              72             5
+         [pl2,pl7]      7              80             10
+         [pl2,B1]       9              28   		7	
+	 [pl2,B2]	8		28          9
+         [pl3,pl2]      5              55            11 
+         [pl3,pl4]      5              55             6
+         [pl3,pl6]      6              55             9
+ #        [pl3,B1]       8              55             
+ #        [pl3,B2]       8              55             
+         [pl4,pl1]      7              72             2
+         [pl4,pl3]      5              55             5
+         [pl4,pl7]      6              80             9
+         [pl4,B1]       7              28             8
+         [pl5,pl2]      6              72             5
+    #     [pl5,B1]       6              72             
+         [pl6,pl1]      5              72             10
+         [pl6,pl3]      6              55             9
+         [pl6,pl7]      5              80             6
+         [pl6,B1]       9              28             8
+         [pl6,B2]       9              28             5
+         [pl7,pl2]      7              80             10
+         [pl7,pl4]      6              80             9
+         [pl7,pl6]      5              80             6;
+ #        [pl7,B1]       5              80  ;           
+       #  [pl7,B2]       7              80              ;

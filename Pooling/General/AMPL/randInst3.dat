@@ -1,0 +1,80 @@
+data;
+
+param time := 20 ;
+
+param Warmup := 2 ;
+
+#param varcost := 0.02 ;
+
+set SPECS := sp1  sp2   ;
+
+set INPUTS := f1  f2   ;
+
+param:   BLENDS:   revenue   initialinv  := 
+         B1        106       34          
+         B2        69        47           ;
+
+param:   POOLS:    fixcost:= 
+         pl1       20        
+         pl2       7         
+         pl3       21        
+         pl4       7         
+         pl5       23         ;
+
+param:    mincapacity     capacity :=    
+f1        0               42             
+f2       0               55             
+B1        0               55             
+B2        0               55             
+pl1       0               72             
+pl2       0               27             
+pl3       0               72             
+pl4       0               27             
+pl5       0               80              ;
+
+param:    CONTRACTPOOLS:  duration  :=
+          pl2             8
+          pl5             3 ;
+
+
+param        demand:
+          1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19    20     := 
+B1        12    22    22    21    16    24    17    18    16    22    14    16    15    12    18    21    11    18    10    10    
+B2        24    23    15    22    23    17    20    14    23    21    22    15    23    20    13    22    11    21    12    19     ;
+
+param        prodrate:
+          1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19    20     := 
+f1        22    19    24    26    13    17    19    12    20    30    30    27    18    19    20    12    15    16    10    10    
+f2       34    27    18    23    20    15    21    19    26    34    32    29    20    22    16    14    18    21    10    14     ;
+
+param        speclevel:
+          sp1     sp2     := 
+f1        0.15    0.42    
+f2       0.17    0.25     ;
+
+param:          minspec   maxspec    := 
+[B1,*]  sp1     0.16      0.17      
+       sp2     0.27      0.39      
+[B2,*]  sp1     0.15      0.168      
+       sp2     0.25      0.4       ;
+
+param:   ARCS:          flowlbd        flowupbd 	varcost       := 
+         [f1,pl1]       7              42             6
+         [f1,pl5]       6              42             4
+         [f2,pl3]      7              55              9
+         [f2,pl5]      9              55              6
+         [pl1,pl2]      8              72             10
+         [pl1,pl4]      8              72             2
+         [pl2,pl1]      8              72             10
+         [pl2,pl3]      8              72             4
+         [pl2,B1]       8              27             7
+         [pl3,pl2]      8              72             4
+         [pl3,pl4]      5              72             6
+         [pl3,B1]       9              72             13
+         [pl4,pl1]      8              72             2
+         [pl4,pl3]      5              72             6
+         [pl4,pl5]      8              80             9
+         [pl4,B2]       5              27             8
+         [pl5,pl4]      8              80             5
+         [pl5,B1]       8              80             10
+         [pl5,B2]       5              80             14 ;
