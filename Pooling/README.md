@@ -14,12 +14,12 @@ Instances for the pooling problem. There are two types
 
 Each directory has data in both AMPL and GAMS formats. Model files are provided for each.
 1. Standard : 
-	- AMPL : <model pooling-q.mod> loads the pq-formulation. You can then use a 
+	- AMPL : <pooling-q.mod> loads the pq-formulation. You can then use a 
 	nonlinear or global solver of your choice.
-	- GAMS : <include xmodel.gms> calls <pqmodel.std.gms> which loads the pq-formulation. 
+	- GAMS : <xmodel.gms> calls <pqmodel.std.gms> which loads the pq-formulation. 
 	You can then use a nonlinear or global solver of your choice.
 	
 2. General : 
-	- AMPL : Use <model pooling-p.mod> to load the p-formulation. The pq-formulation does 
+	- AMPL : Use <pooling-p.mod> to load the p-formulation. The pq-formulation does 
 	not work well on these instances and hence is not provided.
-	- GAMS : Use <include pooling-p.gms> to load the p-formulation.
+	- GAMS : Use <pooling-p.gms> to load the p-formulation.
