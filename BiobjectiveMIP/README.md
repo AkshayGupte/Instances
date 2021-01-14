@@ -6,6 +6,7 @@ one with a randomly generated objective, and one whose objective is negative of 
 original objective.
 
 Please cite the following paper where you will also find details about instance generation.
+
 	- Nathan Adelgren and Akshay Gupte, "Branch-and-bound for biobjective mixed-integer linear programming",
 	Preprint. arXiv:1709.03668 [math.OC]
 	
